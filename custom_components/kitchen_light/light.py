@@ -262,6 +262,11 @@ class KitchenLight(LightEntity):
         elif self._brightness == 0:
             self._brightness = 255
 
+        if 'source' in kwargs and kwargs['source'] == 'MotionSensor':
+            pass
+        else:
+            self.switched_on = True
+
 #        def_br = 255 if self._brightness == 0 else self._brightness
 #        self._brightness = kwargs.get(ATTR_BRIGHTNESS, def_br)
         self._is_on = True
@@ -305,6 +310,7 @@ class KitchenLight(LightEntity):
         self._mode = kwargs.get("mode", "Vivid")
         self._is_on = True
         self._brightness = 255
+        self.switched_on = True
         #self._state = "on"
         await self._rightlight.turn_on(mode=self._mode)
         self._updateState()
@@ -316,6 +322,7 @@ class KitchenLight(LightEntity):
         self._brightness = 0
         self._brightness_override = 0
         self._is_on = False
+        self.switched_on = False
         #self._state = "off"
         await self._rightlight.disable_and_turn_off()
         self._updateState()
@@ -391,13 +398,13 @@ class KitchenLight(LightEntity):
 #        #self.hass.states.async_set(f"light.{self._name}", f"ENT: {payload}")
 #        self._updateState(f"{payload}")
 #
-#        self.switched_on = True
+##        self.switched_on = True
 #        if payload == "on-press":
 #            await self.async_turn_on()
 #        elif payload == "on-hold":
 #            await self.async_turn_on_mode(mode="Vivid")
 #        elif payload == "off-press":
-#            self.switched_on = False
+##            self.switched_on = False
 #            await self.async_turn_off()
 #        elif payload == "up-press":
 #            await self.up_brightness()
@@ -424,6 +431,6 @@ class KitchenLight(LightEntity):
             return
 
         if self._occupancy:
-            await self.async_turn_on(brightness=254)
+            await self.async_turn_on(brightness=254, source='MotionSensor')
         else:
             await self.async_turn_off()
