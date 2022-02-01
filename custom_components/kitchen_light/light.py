@@ -410,6 +410,8 @@ class KitchenLight(LightEntity):
 
     async def motion_sensor_message_received(self, topic: str, payload: str, qos: int) -> None:
         """A new MQTT message has been received."""
+        _LOGGER.error(f"KITCHEN Curr: {self._occupancy}")
+        _LOGGER.error(f"KITCHEN New: {payload}")
         if self._occupancy == payload["occupancy"]:
             # No change to state
             return
@@ -422,6 +424,6 @@ class KitchenLight(LightEntity):
             return
 
         if self._occupancy:
-            await self.async_turn_on(brightness=192)
+            await self.async_turn_on(brightness=254)
         else:
             await self.async_turn_off()
