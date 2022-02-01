@@ -75,6 +75,7 @@ async def async_setup_platform(
     @callback
     async def motion_sensor_message_received(topic: str, payload: str, qos: int) -> None:
         """A new motion sensor MQTT message has been received"""
+        _LOGGER.error("KITCHEN LIGHT MOTION SEEN")
         await ent.motion_sensor_message_received(topic, json.loads(payload), qos)
 
 #    await hass.components.mqtt.async_subscribe( switch_action, switch_message_received )
