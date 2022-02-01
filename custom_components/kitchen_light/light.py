@@ -2,6 +2,7 @@
 from __future__ import annotations
 import logging, json
 #from enum import Enum
+
 #import homeassistant.helpers.config_validation as cv
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
