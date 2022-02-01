@@ -1,10 +1,10 @@
-"""The new theater_light integration."""
+"""The new kitchen integration."""
 from __future__ import annotations
 
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 
-DOMAIN = "theater_light"
+DOMAIN = "kitchen_light"
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
