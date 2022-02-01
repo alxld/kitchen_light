@@ -428,7 +428,9 @@ class KitchenLight(LightEntity):
         self._updateState()
 
         # Disable motion sensor tracking if the lights are switched on or the harmony is on
-        if self.switched_on or self.harmony_on:
+        #if self.switched_on or self.harmony_on:
+        #    return
+        if self.switched_on:
             return
 
         if self._occupancy:
