@@ -1,6 +1,6 @@
 {
-  "domain": "theater_light",
-  "name": "theater_light",
+  "domain": "kitchen_light",
+  "name": "kitchen_light",
   "version": "0.1",
   "config_flow": false,
   "documentation": "https://www.home-assistant.io/integrations/new_light",
