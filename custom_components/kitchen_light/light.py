@@ -16,6 +16,7 @@ from homeassistant.components.light import (
     ATTR_EFFECT_LIST,
     ATTR_FLASH,
     ATTR_HS_COLOR,
+    ATTR_RGB_COLOR,
     ATTR_MAX_MIREDS,
     ATTR_MIN_MIREDS,
     ATTR_TRANSITION,
@@ -118,7 +119,7 @@ class KitchenLight(LightEntity):
         self._available = True
         self._occupancy = False
         self.entity_id = generate_entity_id(ENTITY_ID_FORMAT, self._name, [])
-        self._white_value: Optional[int] = None
+        # self._white_value: Optional[int] = None
         self._effect_list: Optional[List[str]] = None
         self._effect: Optional[str] = None
         self._supported_features: int = 0
@@ -244,10 +245,10 @@ class KitchenLight(LightEntity):
         """Return the warmest color_temp that this light group supports."""
         return self._max_mireds
 
-    @property
-    def white_value(self) -> Optional[int]:
-        """Return the white value of this light group between 0..255."""
-        return self._white_value
+    # @property
+    # def white_value(self) -> Optional[int]:
+    #    """Return the white value of this light group between 0..255."""
+    #    return self._white_value
 
     @property
     def rgb_color(self) -> tuple[int, int, int] | None:
@@ -308,6 +309,9 @@ class KitchenLight(LightEntity):
         if ATTR_HS_COLOR in kwargs:
             rl = False
             data[ATTR_HS_COLOR] = kwargs[ATTR_HS_COLOR]
+        if ATTR_RGB_COLOR in kwargs:
+            rl = False
+            data[ATTR_RGB_COLOR] = kwargs[ATTR_RGB_COLOR]
         if ATTR_BRIGHTNESS in kwargs:
             data[ATTR_BRIGHTNESS] = kwargs[ATTR_BRIGHTNESS]
         if ATTR_COLOR_TEMP in kwargs:
@@ -394,24 +398,21 @@ class KitchenLight(LightEntity):
 
     async def async_update(self):
         """Query light and determine the state."""
-        _LOGGER.error(f"{self._name} LIGHT ASYNC_UPDATE")
         state = self.hass.states.get(self._light)
+        _LOGGER.error(f"{self._name} LIGHT ASYNC_UPDATE: {state}")
 
         if state == None:
             return
 
         #        self._is_on = (state.state == STATE_ON)
         #        self._available = (state.state != STATE_UNAVAILABLE)
-
         #        self._brightness = state.attributes.get(ATTR_BRIGHTNESS)
-
-        #        self._hs_color = state.attributes.get(ATTR_HS_COLOR)
-
+        self._hs_color = state.attributes.get(ATTR_HS_COLOR, self._hs_color)
+        self._rgb_color = state.attributes.get(ATTR_RGB_COLOR, self._rgb_color)
         #        self._white_value = state.attributes.get(ATTR_WHITE_VALUE)
-
-        #        self._color_temp = state.attributes.get(ATTR_COLOR_TEMP, self._color_temp)
-        #        self._min_mireds = state.attributes.get(ATTR_MIN_MIREDS, 154)
-        #        self._max_mireds = state.attributes.get(ATTR_MAX_MIREDS, 500)
+        self._color_temp = state.attributes.get(ATTR_COLOR_TEMP, self._color_temp)
+        self._min_mireds = state.attributes.get(ATTR_MIN_MIREDS, 154)
+        self._max_mireds = state.attributes.get(ATTR_MAX_MIREDS, 500)
 
         self._effect_list = state.attributes.get(ATTR_EFFECT_LIST)
 
