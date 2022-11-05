@@ -185,8 +185,8 @@ class KitchenLight(LightEntity):
 
     @property
     def should_poll(self):
-        """Will update state as needed"""
-        return False
+        """Allows for color updates to be polled"""
+        return True
 
     @property
     def name(self) -> str:
