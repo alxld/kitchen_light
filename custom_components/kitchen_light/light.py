@@ -35,6 +35,7 @@ class KitchenLight(NewLight):
         )
 
         self.entities["light.kitchen_chandeliers_group"] = None
+        self.entities["light.kitchen_stairs_fixture_group"] = None
         self.entities["light.kitchen_group"] = None
         self.entities_below_threshold = [
             "light.kitchen_chandeliers_group",
