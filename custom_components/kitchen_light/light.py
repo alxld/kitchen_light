@@ -40,4 +40,4 @@ class KitchenLight(NewLight):
 
         self.has_brightness_threshold = True
         self.brightness_threshold = 128
-        self.motion_sensor_brightness = 180
+        self.motion_sensor_brightness = 170
