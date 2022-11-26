@@ -34,5 +34,10 @@ class KitchenLight(NewLight):
             "Kitchen", domain=DOMAIN, debug=False, debug_rl=False
         )
 
+        self.entities["light.kitchen_chandeliers_group"] = None
         self.entities["light.kitchen_group"] = None
         self.motion_sensors.append("Kitchen Motion Sensor")
+
+        self.has_brightness_threshold = True
+        self.brightness_threshold = 128
+        self.motion_sensor_brightness = 128
