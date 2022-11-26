@@ -36,6 +36,13 @@ class KitchenLight(NewLight):
 
         self.entities["light.kitchen_chandeliers_group"] = None
         self.entities["light.kitchen_group"] = None
+        self.entities_below_threshold = [
+            "light.kitchen_table_chandelier_group",
+            "light.kitchen_sink_chandelier_group",
+            "light.kitchen_stairs_fixture_group",
+        ]
+        self.entities_above_threshold = ["light.kitchen_group"]
+        self.brightness_multiplier["light.kitchen_stairs_fixture_group"] = 0.8
         self.motion_sensors.append("Kitchen Motion Sensor")
 
         self.has_brightness_threshold = True
