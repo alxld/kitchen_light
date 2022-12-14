@@ -44,6 +44,7 @@ class KitchenLight(NewLight):
         self.entities_above_threshold = ["light.kitchen_group"]
         self.brightness_multiplier["light.kitchen_stairs_fixture_group"] = 0.6
         self.motion_sensors.append("Kitchen Motion Sensor")
+        self.motion_sensors.append("Kitchen Stairs Motion Sensor")
 
         self.switch = "Kitchen Switch"
 
