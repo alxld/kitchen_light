@@ -37,9 +37,11 @@ class KitchenLight(NewLight):
         self.entities["light.kitchen_chandeliers_group"] = None
         self.entities["light.kitchen_stairs_fixture_group"] = None
         self.entities["light.kitchen_ceiling_group"] = None
+        self.entities["light.kitchen_under_cabinet_group"] = None
         self.entities_below_threshold = [
             "light.kitchen_chandeliers_group",
             "light.kitchen_stairs_fixture_group",
+            "light.kitchen_under_cabinet_group",
         ]
         self.entities_above_threshold = ["light.kitchen_ceiling_group"]
         self.brightness_multiplier["light.kitchen_stairs_fixture_group"] = 0.6
