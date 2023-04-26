@@ -45,8 +45,12 @@ class KitchenLight(NewLight):
         ]
         self.entities_above_threshold = ["light.kitchen_ceiling_group"]
         self.brightness_multiplier["light.kitchen_stairs_fixture_group"] = 0.6
-        self.motion_sensors.append("Kitchen Motion Sensor")
-        self.motion_sensors.append("Kitchen Stairs Motion Sensor")
+        # self.motion_sensors.append("Kitchen Motion Sensor")
+        # self.motion_sensors.append("Kitchen Stairs Motion Sensor")
+        self.motion_sensors.append("binary_sensor.kitchen_motion_sensor_occupancy")
+        self.motion_sensors.append(
+            "binary_sensor.kitchen_stairs_motion_sensor_occupancy_2"
+        )
 
         # self.switch = "Kitchen Switch"
         self.switch = "00:17:88:01:0c:29:72:ff"
