@@ -48,7 +48,8 @@ class KitchenLight(NewLight):
         self.motion_sensors.append("Kitchen Motion Sensor")
         self.motion_sensors.append("Kitchen Stairs Motion Sensor")
 
-        self.switch = "Kitchen Switch"
+        # self.switch = "Kitchen Switch"
+        self.switch = "00:17:88:01:0c:29:72:ff"
 
         self.has_brightness_threshold = True
         self.brightness_threshold = 128
